@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common'
-import {Face3, Geometry, Vector3 } from 'three'
+import { Face3, Geometry, Vector3 } from 'three'
 import { GeometryDto } from './dto/geometry.dto'
-
 
 @Injectable()
 export class GeometryService {
-  computeMesh({ width, height, depth }: GeometryDto): Geometry {
-
+  computeGeometry({ width, height, depth }: GeometryDto): Geometry {
     const vertices = [
       new Vector3(-width, -height, depth), //0
       new Vector3(width, -height, depth), //1

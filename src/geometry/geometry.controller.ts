@@ -9,6 +9,6 @@ export class GeometryController {
 
   @Post()
   calculate(@Body() vectors: GeometryDto): Geometry {
-    return this.geometryService.computeMesh(vectors)
+    return this.geometryService.computeGeometry(vectors)
   }
 }
