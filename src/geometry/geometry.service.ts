@@ -5,16 +5,14 @@ import {
   Vector3,
   MeshLambertMaterial,
   Color,
-  MeshBasicMaterial,
+  Mesh,
 } from 'three'
 import { GeometryDto } from './dto/geometry.dto'
-import { SceneUtils } from './utils/SceneUtils'
 
 @Injectable()
 export class GeometryService {
   computeGeometry({ width, height, depth }: GeometryDto) {
     const greenLight = new Color(0x44ff44)
-    const black = new Color(0x000000)
 
     const vertices = [
       new Vector3(-width, -height, +depth), //0
@@ -46,16 +44,12 @@ export class GeometryService {
     geometry.vertices = vertices
     geometry.faces = faces
 
-    const materials = [
-      new MeshLambertMaterial({
-        opacity: 0.6,
-        color: greenLight,
-        transparent: true,
-      }),
-      new MeshBasicMaterial({ color: black, wireframe: true }),
-    ]
+    const materials = new MeshLambertMaterial({
+      opacity: 0.6,
+      color: greenLight,
+      transparent: true,
+    })
 
-    const mesh = SceneUtils.createMultiMaterialObject(geometry, materials)
-    return mesh
+    return new Mesh(geometry, materials)
   }
 }
