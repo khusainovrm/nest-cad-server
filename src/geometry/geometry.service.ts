@@ -56,6 +56,6 @@ export class GeometryService {
     ]
 
     const mesh = SceneUtils.createMultiMaterialObject(geometry, materials)
-    return JSON.stringify(mesh)
+    return mesh
   }
 }
