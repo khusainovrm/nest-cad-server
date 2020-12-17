@@ -1,10 +1,21 @@
 import { Injectable } from '@nestjs/common'
-import { Face3, Geometry, Vector3 } from 'three'
+import {
+  Face3,
+  Geometry,
+  Vector3,
+  MeshLambertMaterial,
+  Color,
+  MeshBasicMaterial,
+} from 'three'
 import { GeometryDto } from './dto/geometry.dto'
+import { SceneUtils } from './utils/SceneUtils'
 
 @Injectable()
 export class GeometryService {
-  computeGeometry({ width, height, depth }: GeometryDto): Geometry {
+  computeGeometry({ width, height, depth }: GeometryDto) {
+    const greenLight = new Color(0x44ff44)
+    const black = new Color(0x000000)
+
     const vertices = [
       new Vector3(-width, -height, depth), //0
       new Vector3(width, -height, depth), //1
@@ -35,6 +46,16 @@ export class GeometryService {
     geometry.vertices = vertices
     geometry.faces = faces
 
-    return geometry
+    const materials = [
+      new MeshLambertMaterial({
+        opacity: 0.6,
+        color: greenLight,
+        transparent: true,
+      }),
+      new MeshBasicMaterial({ color: black, wireframe: true }),
+    ]
+
+    const mesh = SceneUtils.createMultiMaterialObject(geometry, materials)
+    return mesh
   }
 }
