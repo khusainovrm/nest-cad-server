@@ -8,7 +8,7 @@ export class GeometryController {
   constructor(private readonly geometryService: GeometryService) {}
 
   @Post()
-  computeObject(@Body() vectors: GeometryDto): Object3D {
+  computeObject(@Body() vectors: GeometryDto) {
     return this.geometryService.computeGeometry(vectors)
   }
 
