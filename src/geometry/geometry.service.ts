@@ -17,14 +17,14 @@ export class GeometryService {
     const black = new Color(0x000000)
 
     const vertices = [
-      new Vector3(-width, -height, depth), //0
-      new Vector3(width, -height, depth), //1
-      new Vector3(-width, height, depth), //2
-      new Vector3(width, height, depth), //3
+      new Vector3(-width, -height, +depth), //0
+      new Vector3(+width, -height, +depth), //1
+      new Vector3(-width, +height, +depth), //2
+      new Vector3(+width, +height, +depth), //3
       new Vector3(-width, -height, -depth), //4
-      new Vector3(width, -height, -depth), //5
-      new Vector3(-width, height, -depth), //6
-      new Vector3(width, height, -depth), //7
+      new Vector3(+width, -height, -depth), //5
+      new Vector3(-width, +height, -depth), //6
+      new Vector3(+width, +height, -depth), //7
     ]
 
     const faces = [
